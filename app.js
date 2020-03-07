@@ -17,8 +17,8 @@ var commentRoutes = require("./routes/comments"),
 var app = express();
 
 app.set( "view engine", "ejs");
-mongoose.connect("mongodb://localhost:27017/Restaurants_db", {useNewUrlParser: true, useUnifiedTopology: true});
-
+mongoose.connect("mongodb+srv://venkatesh:Yesmongodb%401710@mycluster-fyzgz.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+//mongodb+srv://venkatesh:<password>@mycluster-fyzgz.mongodb.net/test?retryWrites=true&w=majority
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));

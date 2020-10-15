@@ -8,7 +8,7 @@ var middleware = require("../middleware");
 //NEW COMMENT
 
 
-router.get("/restaurants/:id/comments/new", middleware.isLoggedIn, function(req, res){
+router.get("/restaurants/:id/reviews/new", middleware.isLoggedIn, function(req, res){
 		Restaurant.findById(req.params.id, function(err, restaurant){
 			if(err){
 				console.log(err);
@@ -18,7 +18,7 @@ router.get("/restaurants/:id/comments/new", middleware.isLoggedIn, function(req,
 		});
 });
 
-router.post("/restaurants/:id/comments", middleware.isLoggedIn, function(req, res){
+router.post("/restaurants/:id/reviews", middleware.isLoggedIn, function(req, res){
 		Restaurant.findById(req.params.id, function(err, restaurant){
 			if(err){
 				console.log(err);
@@ -45,7 +45,7 @@ router.post("/restaurants/:id/comments", middleware.isLoggedIn, function(req, re
 //EDIT COMMENT
 
 
-router.get("/restaurants/:id/comments/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
+router.get("/restaurants/:id/reviews/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
 	Comment.findById(req.params.comment_id, function(err, foundComment){
 		if(err) {
 			res.redirect("back");
@@ -59,7 +59,7 @@ router.get("/restaurants/:id/comments/:comment_id/edit", middleware.checkComment
 //UPDATE COMMENT
 
 
-router.put("/restaurants/:id/comments/:comment_id", middleware.checkCommentOwnership, function(req, res){
+router.put("/restaurants/:id/reviews/:comment_id", middleware.checkCommentOwnership, function(req, res){
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
 		if(err) {
 			res.redirect("back");
@@ -73,7 +73,7 @@ router.put("/restaurants/:id/comments/:comment_id", middleware.checkCommentOwner
 
 //DELETE COMMENT
 
-router.delete("/restaurants/:id/comments/:comment_id", middleware.checkCommentOwnership, function(req, res){
+router.delete("/restaurants/:id/reviews/:comment_id", middleware.checkCommentOwnership, function(req, res){
 	Comment.findByIdAndRemove(req.params.comment_id, function(err){
 		if(err) {
 			res.redirect("back");

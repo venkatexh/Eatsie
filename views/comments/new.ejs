@@ -4,7 +4,7 @@
 	<div class="row">
 		<h1 style="text-align: center">Write a review for <%= restaurant.name %></h1>
 		<div style="width: 30%; margin: 20px auto;">
-			<form action="/restaurants/<%= restaurant._id %>/comments" method="POST">
+			<form action="/restaurants/<%= restaurant._id %>/reviews" method="POST">
 				<div class="form-group">
 					<input class="form-control" type="text" name="comment[text]" placeholder="Your review">
 				</div>

@@ -1,24 +1,27 @@
-var express 	= require("express"),
-	mongoose 	= require("mongoose"),
-	bodyParser  = require("body-parser"),
-	passport	= require("passport"),
-	flash		= require("connect-flash"),
-  localStrategy = require("passport-local"),
- methodOverride = require("method-override"),
-	Restaurant  = require("./models/restaurants"),
-	Comment     = require("./models/comments"),
-	User		= require("./models/users"),
-	seedDB	    = require("./seeds")
+var express 	  = require("express"),
+	mongoose 	  = require("mongoose"),
+	bodyParser    = require("body-parser"),
+	passport	  = require("passport"),
+	flash		  = require("connect-flash"),
+    localStrategy = require("passport-local"),
+    methodOverride= require("method-override"),
+	Restaurant    = require("./models/restaurants"),
+	Comment       = require("./models/comments"),
+	User		  = require("./models/users"),
+	seedDB	      = require("./seeds")
 
-var commentRoutes = require("./routes/comments"),
+var commentRoutes    = require("./routes/comments"),
 	restaurantRoutes = require("./routes/restaurants"),
-	indexRoutes = require("./routes/index")
+	indexRoutes      = require("./routes/index")
 
 var app = express();
 
 app.set( "view engine", "ejs");
-mongoose.connect("mongodb+srv://venkatesh:Yesmongodb%401710@mycluster-fyzgz.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect('mongodb://localhost:27017/Restaurants_db', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DBURL, {useNewUrlParser: true, useUnifiedTopology: true});
+
 //mongodb+srv://venkatesh:<password>@mycluster-fyzgz.mongodb.net/test?retryWrites=true&w=majority
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
@@ -55,12 +58,6 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use(commentRoutes);
 app.use(restaurantRoutes);
-
-
-
-//=================
-//port
-//================
 
 
 var port= process.env.PORT || 3002;
